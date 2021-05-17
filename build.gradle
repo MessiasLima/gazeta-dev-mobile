@@ -1,16 +1,23 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+
+    ext.gradle_version = "4.2.1"
     ext.kotlin_version = "1.5.0"
+    ext.commit_lint_version = "1.4.1"
+    ext.git_hook_version = "1.2.1"
+
     repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
         google()
         mavenCentral()
     }
-    dependencies {
-        classpath "com.android.tools.build:gradle:4.2.1"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.star-zero.gradle:githook:$git_hook_version"
+        classpath "ru.netris:commitlint-plugin:$commit_lint_version"
     }
 }
 
@@ -18,10 +25,22 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+apply plugin: "ru.netris.commitlint"
+apply plugin: "com.star-zero.gradle.githook"
+
+githook {
+    failOnMissingHooksDir = true
+    createHooksDirIfNotExist = true
+    hooks {
+        "commit-msg" {
+            task = "commitlint -Dmsgfile=\$1"
+        }
+    }
 }
