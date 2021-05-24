@@ -1,0 +1,52 @@
+buildscript {
+
+    ext.gradle_version = "4.2.1"
+    ext.kotlin_version = "1.5.0"
+    ext.commit_lint_version = "1.4.1"
+    ext.git_hook_version = "1.2.1"
+    ext.ktlint_version = "10.0.0"
+
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.star-zero.gradle:githook:$git_hook_version"
+        classpath "ru.netris:commitlint-plugin:$commit_lint_version"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlint_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+apply plugin: "ru.netris.commitlint"
+apply plugin: "com.star-zero.gradle.githook"
+apply plugin: "org.jlleitschuh.gradle.ktlint"
+
+githook {
+    failOnMissingHooksDir = true
+    createHooksDirIfNotExist = true
+    hooks {
+        "commit-msg" {
+            task = "commitlint -Dmsgfile=\$1"
+        }
+        "pre-push" {
+            task = "ktlintCheck"
+        }
+    }
+}
