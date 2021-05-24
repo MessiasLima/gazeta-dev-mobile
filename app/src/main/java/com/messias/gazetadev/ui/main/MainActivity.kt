@@ -7,10 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.messias.gazetadev.R
 import com.messias.gazetadev.databinding.ActivityMainBinding
+import com.messias.gazetadev.util.extension.indexOf
+import com.messias.gazetadev.util.extension.setOnPageChangedListener
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModels<MainViewModel>()
+    private val bottomNavigation by lazy { binding.mainBottomNavigation }
+    private val viewPager by lazy { binding.mainViewPager }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,25 +24,28 @@ class MainActivity : AppCompatActivity() {
         initObservers()
     }
 
-    // region init views
     private fun initViews() {
         initBottomNavigation()
         initViewPager()
     }
 
     private fun initBottomNavigation() {
-        binding.mainBottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
+        bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
+            viewPager.currentItem = bottomNavigation.indexOf(menuItem)
             viewModel.onItemSelected(menuItem.itemId)
             true
         }
     }
 
     private fun initViewPager() {
-        binding.mainViewPager.adapter = MainFragmentAdapter(this)
+        with(viewPager) {
+            adapter = MainFragmentAdapter(this@MainActivity)
+            setOnPageChangedListener { position ->
+                bottomNavigation.selectedItemId = bottomNavigation.menu.getItem(position).itemId
+            }
+        }
     }
-    // endregion
 
-    // region init observers
     private fun initObservers() {
         initItemSelectedObserver()
     }
@@ -49,10 +56,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateBottomNavigationColor(itemId: Int) {
         val itemColor = getItemColor(itemId)
-        binding.mainBottomNavigation.itemIconTintList = ColorStateList.valueOf(itemColor)
-        binding.mainBottomNavigation.itemTextColor = ColorStateList.valueOf(itemColor)
+        with(bottomNavigation) {
+            itemIconTintList = ColorStateList.valueOf(itemColor)
+            itemTextColor = ColorStateList.valueOf(itemColor)
+        }
     }
-    // endregion
 
     private fun getItemColor(itemId: Int): Int {
         val colorRes = when (itemId) {
