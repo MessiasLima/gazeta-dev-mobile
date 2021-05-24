@@ -5,13 +5,16 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.messias.gazetadev.R
 import com.messias.gazetadev.databinding.ActivityMainBinding
 import com.messias.gazetadev.util.extension.indexOf
+import com.messias.gazetadev.util.extension.removeOnPageChangedListener
 import com.messias.gazetadev.util.extension.setOnPageChangedListener
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var onPageChangeCallback: ViewPager2.OnPageChangeCallback
     private val viewModel by viewModels<MainViewModel>()
     private val bottomNavigation by lazy { binding.mainBottomNavigation }
     private val viewPager by lazy { binding.mainViewPager }
@@ -40,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun initViewPager() {
         with(viewPager) {
             adapter = MainFragmentAdapter(this@MainActivity)
-            setOnPageChangedListener { position ->
+            onPageChangeCallback = setOnPageChangedListener { position ->
                 bottomNavigation.selectedItemId = bottomNavigation.menu.getItem(position).itemId
             }
         }
@@ -74,5 +77,10 @@ class MainActivity : AppCompatActivity() {
 
         return ContextCompat.getColor(this, colorRes)
     }
-}
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewPager.removeOnPageChangedListener(onPageChangeCallback)
+        viewPager.adapter = null
+    }
+}
