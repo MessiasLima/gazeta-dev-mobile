@@ -1,4 +1,4 @@
-package com.messias.gazetadev
+package com.messias.gazetadev.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

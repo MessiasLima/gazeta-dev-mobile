@@ -1,11 +1,11 @@
-package com.messias.gazetadev
+package com.messias.gazetadev.ui.main
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.messias.gazetadev.R
 import com.messias.gazetadev.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,17 +20,25 @@ class MainActivity : AppCompatActivity() {
         initObservers()
     }
 
+    // region init views
     private fun initViews() {
-        setupBottomNavigation()
+        initBottomNavigation()
+        initViewPager()
     }
 
-    private fun setupBottomNavigation() {
-        binding.bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
+    private fun initBottomNavigation() {
+        binding.mainBottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             viewModel.onItemSelected(menuItem.itemId)
             true
         }
     }
 
+    private fun initViewPager() {
+        binding.mainViewPager.adapter = MainFragmentAdapter(this)
+    }
+    // endregion
+
+    // region init observers
     private fun initObservers() {
         initItemSelectedObserver()
     }
@@ -41,9 +49,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateBottomNavigationColor(itemId: Int) {
         val itemColor = getItemColor(itemId)
-        binding.bottomNavigation.itemIconTintList = ColorStateList.valueOf(itemColor)
-        binding.bottomNavigation.itemTextColor = ColorStateList.valueOf(itemColor)
+        binding.mainBottomNavigation.itemIconTintList = ColorStateList.valueOf(itemColor)
+        binding.mainBottomNavigation.itemTextColor = ColorStateList.valueOf(itemColor)
     }
+    // endregion
 
     private fun getItemColor(itemId: Int): Int {
         val colorRes = when (itemId) {
@@ -58,3 +67,4 @@ class MainActivity : AppCompatActivity() {
         return ContextCompat.getColor(this, colorRes)
     }
 }
+
