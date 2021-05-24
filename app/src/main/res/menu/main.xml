@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_menu_all"
+        android:icon="@drawable/ic_all"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/main_menu_youtube"
+        android:icon="@drawable/ic_youtube"
+        android:title="@string/youtube" />
+
+    <item
+        android:id="@+id/main_menu_articles"
+        android:icon="@drawable/ic_articles"
+        android:title="@string/articles" />
+
+    <item
+        android:id="@+id/main_menu_podcasts"
+        android:icon="@drawable/ic_podcasts"
+        android:title="@string/podcasts" />
+
+    <item
+        android:id="@+id/main_menu_twitch"
+        android:icon="@drawable/ic_twitch"
+        android:title="@string/twitch" />
+</menu>
