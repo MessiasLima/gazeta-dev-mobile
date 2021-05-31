@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
     @Provides
-    fun provideGazetaDevApi(): GazetaDevApi{
+    fun provideGazetaDevApi(): GazetaDevApi {
         return Retrofit.Builder()
             .baseUrl(GAZETA_DEV_API_HOST)
             .addConverterFactory(GsonConverterFactory.create())

@@ -3,9 +3,10 @@ package com.messias.gazetadev.ui.content
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import androidx.lifecycle.map
-import androidx.lifecycle.switchMap
-import com.messias.gazetadev.model.ContentItemResponse
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
+import com.messias.gazetadev.repository.ContentPagingSource
 import com.messias.gazetadev.repository.ContentRepository
 import com.messias.gazetadev.util.ContentType
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,11 +17,13 @@ class ContentViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     contentRepository: ContentRepository
 ) : ViewModel() {
-    val contentItems = savedStateHandle.getLiveData<ContentType>(
-        ContentFragment.ARGUMENT_CONTENT_TYPE
-    ).switchMap { contentType ->
-        liveData {
-            emit(contentRepository.getContent(contentType))
+    val contentItems = Pager(
+        config = PagingConfig(pageSize = 20),
+        pagingSourceFactory = {
+            ContentPagingSource(
+                contentRepository,
+                savedStateHandle.get<ContentType>(ContentFragment.ARGUMENT_CONTENT_TYPE)
+            )
         }
-    }
+    ).liveData
 }
