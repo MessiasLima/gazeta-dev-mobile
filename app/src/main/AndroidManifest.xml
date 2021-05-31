@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.messias.gazetadev">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".GazetaDevApplication"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GazetaDev"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

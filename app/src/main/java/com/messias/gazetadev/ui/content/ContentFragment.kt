@@ -1,6 +1,7 @@
 package com.messias.gazetadev.ui.content
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,7 @@ class ContentFragment : Fragment() {
 
     private fun initObservers() {
         viewModel.contentItems.observe(viewLifecycleOwner) {
-            binding.text.text = it.name
+            Log.i("DEU_BOM", it.toString())
         }
     }
 
