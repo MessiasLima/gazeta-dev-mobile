@@ -1,7 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'org.jlleitschuh.gradle.ktlint'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -71,6 +73,8 @@ dependencies {
     implementation "androidx.activity:activity-ktx:$androidx_activity_version"
     implementation "androidx.fragment:fragment-ktx:$androidx_fragment_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidx_livedata_version"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     testImplementation "junit:junit:$junit_version"
 
@@ -78,4 +82,8 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso_version"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+}
+
+kapt {
+    correctErrorTypes true
 }

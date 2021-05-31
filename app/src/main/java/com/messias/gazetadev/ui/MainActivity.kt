@@ -1,4 +1,4 @@
-package com.messias.gazetadev.ui.main
+package com.messias.gazetadev.ui
 
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -8,10 +8,14 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.messias.gazetadev.R
 import com.messias.gazetadev.databinding.ActivityMainBinding
+import com.messias.gazetadev.ui.main.MainFragmentAdapter
+import com.messias.gazetadev.ui.main.MainViewModel
 import com.messias.gazetadev.util.extension.indexOf
 import com.messias.gazetadev.util.extension.removeOnPageChangedListener
 import com.messias.gazetadev.util.extension.setOnPageChangedListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var onPageChangeCallback: ViewPager2.OnPageChangeCallback

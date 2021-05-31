@@ -1,6 +1,7 @@
 package com.messias.gazetadev.ui.main
 
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.messias.gazetadev.ui.MainActivity
 import com.messias.gazetadev.ui.content.ContentFragment
 import com.messias.gazetadev.util.ContentType
 

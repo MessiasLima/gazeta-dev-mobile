@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.messias.gazetadev.databinding.FragmentContentBinding
 import com.messias.gazetadev.util.ContentType
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ContentFragment : Fragment() {
     private lateinit var binding: FragmentContentBinding
     private val viewModel by viewModels<ContentViewModel>()
