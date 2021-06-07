@@ -10,6 +10,7 @@ import com.messias.gazetadev.R
 import com.messias.gazetadev.databinding.ActivityMainBinding
 import com.messias.gazetadev.ui.main.MainFragmentAdapter
 import com.messias.gazetadev.ui.main.MainViewModel
+import com.messias.gazetadev.util.ContentType
 import com.messias.gazetadev.util.extension.indexOf
 import com.messias.gazetadev.util.extension.removeOnPageChangedListener
 import com.messias.gazetadev.util.extension.setOnPageChangedListener
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewPager() {
         with(viewPager) {
+            offscreenPageLimit = ContentType.values().size
             adapter = MainFragmentAdapter(this@MainActivity)
             onPageChangeCallback = setOnPageChangedListener { position ->
                 bottomNavigation.selectedItemId = bottomNavigation.menu.getItem(position).itemId

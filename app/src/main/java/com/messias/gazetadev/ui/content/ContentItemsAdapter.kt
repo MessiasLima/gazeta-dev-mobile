@@ -4,8 +4,9 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.messias.gazetadev.model.ContentItem
+import com.messias.gazetadev.util.ContentType
 
-class ContentItemsAdapter : PagingDataAdapter<ContentItem, ContentItemViewHolder>(diffCallback) {
+class ContentItemsAdapter: PagingDataAdapter<ContentItem, ContentItemViewHolder>(diffCallback) {
     override fun onBindViewHolder(holder: ContentItemViewHolder, position: Int) {
         getItem(position)?.also { contentItem ->
             holder.bind(contentItem)

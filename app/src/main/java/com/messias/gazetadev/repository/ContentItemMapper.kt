@@ -9,5 +9,6 @@ fun ContentItemResponse.toContentItem() = ContentItem(
     author = this.author,
     link = this.link,
     pubDate = this.pubDate,
-    type = ContentType.fromString(this.type)
+    type = ContentType.fromString(this.type),
+    thumbnailUrl = this.thumbnailUrl
 )

@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.messias.gazetadev.databinding.FragmentContentBinding
-import com.messias.gazetadev.ui.MainActivity
 import com.messias.gazetadev.util.ContentType
 import dagger.hilt.android.AndroidEntryPoint
 

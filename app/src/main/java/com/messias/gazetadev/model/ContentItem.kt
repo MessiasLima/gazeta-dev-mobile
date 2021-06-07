@@ -8,5 +8,6 @@ data class ContentItem(
     val author: String?,
     val link: String?,
     val pubDate: Date?,
-    val type: ContentType?
+    val type: ContentType?,
+    val thumbnailUrl: String?
 )

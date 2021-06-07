@@ -8,5 +8,6 @@ data class ContentItemResponse(
     val link: String?,
     val pubDate: Date?,
     val type: String?,
-    val sourceId: String?
+    val sourceId: String?,
+    val thumbnailUrl: String?
 )
