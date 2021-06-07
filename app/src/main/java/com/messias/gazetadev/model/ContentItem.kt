@@ -9,5 +9,6 @@ data class ContentItem(
     val link: String?,
     val pubDate: Date?,
     val type: ContentType?,
-    val thumbnailUrl: String?
+    val thumbnailUrl: String?,
+    val live: Boolean
 )

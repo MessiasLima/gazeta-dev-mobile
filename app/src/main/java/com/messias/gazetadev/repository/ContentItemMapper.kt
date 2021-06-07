@@ -10,5 +10,6 @@ fun ContentItemResponse.toContentItem() = ContentItem(
     link = this.link,
     pubDate = this.pubDate,
     type = ContentType.fromString(this.type),
-    thumbnailUrl = this.thumbnailUrl
+    thumbnailUrl = this.thumbnailUrl,
+    live = this.type == "LIVE"
 )

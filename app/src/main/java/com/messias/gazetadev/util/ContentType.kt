@@ -9,7 +9,8 @@ enum class ContentType {
                 "YOUTUBE" -> YOUTUBE
                 "ARTICLE" -> ARTICLE
                 "PODCAST" -> PODCAST
-                "TWITCH" -> TWITCH
+                "VOD",
+                "LIVE" -> TWITCH
                 else -> ALL
             }
         }

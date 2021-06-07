@@ -46,7 +46,7 @@ class ContentFragment : Fragment() {
         }
     }
 
-    private fun getWindowTitle(contentType: ContentType) = when(contentType){
+    private fun getWindowTitle(contentType: ContentType) = when (contentType) {
         ContentType.ALL -> R.string.app_name
         ContentType.YOUTUBE -> R.string.youtube
         ContentType.ARTICLE -> R.string.articles
