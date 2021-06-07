@@ -18,6 +18,10 @@ class ContentViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     contentRepository: ContentRepository
 ) : ViewModel() {
+    val contentType = savedStateHandle.getLiveData<ContentType>(
+        ContentFragment.ARGUMENT_CONTENT_TYPE
+    )
+
     val contentItems = Pager(
         config = PagingConfig(pageSize = 20),
         pagingSourceFactory = {
