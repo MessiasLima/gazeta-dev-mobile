@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import androidx.paging.liveData
 import com.messias.gazetadev.repository.ContentPagingSource
 import com.messias.gazetadev.repository.ContentRepository
@@ -25,5 +26,5 @@ class ContentViewModel @Inject constructor(
                 savedStateHandle.get<ContentType>(ContentFragment.ARGUMENT_CONTENT_TYPE)
             )
         }
-    ).liveData
+    ).liveData.cachedIn(this)
 }
