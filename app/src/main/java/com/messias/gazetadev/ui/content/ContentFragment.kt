@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.messias.gazetadev.R
@@ -59,6 +61,10 @@ class ContentFragment : Fragment() {
     private fun initRecyclerView() {
         contentItemsAdapter = ContentItemsAdapter {
             startActivity(Intent(requireContext(), IabActivity::class.java))
+        }
+
+        contentItemsAdapter.addLoadStateListener {
+            binding.contentProgressBar.isVisible = it.refresh is LoadState.Loading
         }
 
         with(binding.contentRecyclerView) {
