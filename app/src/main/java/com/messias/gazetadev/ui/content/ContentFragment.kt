@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.messias.gazetadev.R
 import com.messias.gazetadev.databinding.FragmentContentBinding
 import com.messias.gazetadev.util.ContentType
@@ -57,7 +58,10 @@ class ContentFragment : Fragment() {
     private fun initRecyclerView() {
         contentItemsAdapter = ContentItemsAdapter()
         with(binding.contentRecyclerView) {
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = StaggeredGridLayoutManager(
+                resources.getInteger(R.integer.span_count),
+                StaggeredGridLayoutManager.VERTICAL
+            )
             itemAnimator = DefaultItemAnimator()
             adapter = contentItemsAdapter
         }
