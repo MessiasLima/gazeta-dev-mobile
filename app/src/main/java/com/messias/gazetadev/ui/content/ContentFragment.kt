@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.messias.gazetadev.R
 import com.messias.gazetadev.databinding.FragmentContentBinding
+import com.messias.gazetadev.model.ContentItem
 import com.messias.gazetadev.ui.iab.IabActivity
 import com.messias.gazetadev.util.ContentType
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,9 +60,7 @@ class ContentFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        contentItemsAdapter = ContentItemsAdapter {
-            startActivity(Intent(requireContext(), IabActivity::class.java))
-        }
+        contentItemsAdapter = ContentItemsAdapter(::goToIabScreen)
 
         contentItemsAdapter.addLoadStateListener {
             binding.contentProgressBar.isVisible = it.refresh is LoadState.Loading
@@ -81,6 +80,14 @@ class ContentFragment : Fragment() {
         viewModel.contentItems.observe(viewLifecycleOwner) { pagingData ->
             contentItemsAdapter.submitData(lifecycle, pagingData)
         }
+    }
+
+    private fun goToIabScreen(contentItem: ContentItem) {
+        val intent = Intent(requireContext(), IabActivity::class.java).apply {
+            putExtra(IabActivity.EXTRA_CONTENT_ITEM, contentItem)
+        }
+
+        startActivity(intent)
     }
 
     companion object {

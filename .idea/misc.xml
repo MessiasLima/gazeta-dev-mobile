@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-anydpi/ic_close.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_open_externally.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/activity_iab.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/content_item_list_item.xml" value="0.6211453744493393" />
         <entry key="app/src/main/res/layout/content_list_item.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/fragment_content.xml" value="0.22018348623853212" />
+        <entry key="app/src/main/res/menu/iab.xml" value="0.4036458333333333" />
       </map>
     </option>
   </component>
