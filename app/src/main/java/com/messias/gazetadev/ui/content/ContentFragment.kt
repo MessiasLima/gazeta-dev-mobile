@@ -1,5 +1,6 @@
 package com.messias.gazetadev.ui.content
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.messias.gazetadev.R
 import com.messias.gazetadev.databinding.FragmentContentBinding
+import com.messias.gazetadev.ui.iab.IabActivity
 import com.messias.gazetadev.util.ContentType
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -56,7 +57,10 @@ class ContentFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        contentItemsAdapter = ContentItemsAdapter()
+        contentItemsAdapter = ContentItemsAdapter {
+            startActivity(Intent(requireContext(), IabActivity::class.java))
+        }
+
         with(binding.contentRecyclerView) {
             layoutManager = StaggeredGridLayoutManager(
                 resources.getInteger(R.integer.span_count),

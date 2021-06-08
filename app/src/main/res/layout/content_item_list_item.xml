@@ -69,6 +69,7 @@
             app:layout_constraintBottom_toBottomOf="@id/content_item_author"
             app:layout_constraintStart_toStartOf="@id/content_item_guideline_start"
             app:layout_constraintTop_toTopOf="@id/content_item_author"
+            app:tint="?attr/colorOnPrimary"
             tools:src="@drawable/ic_articles" />
 
         <androidx.appcompat.widget.AppCompatTextView
