@@ -1,6 +1,7 @@
 package com.messias.gazetadev.ui.content
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -21,6 +22,7 @@ class ContentItemViewHolder private constructor(
             contentItemAuthor.text = contentItem.author
             contentItemTitle.text = contentItem.title
             contentItemDate.text = contentItem.pubDate?.let(simpleDateFormat::format)
+            contentItemLiveIndicator.visibility = if (contentItem.live) View.VISIBLE else View.GONE
             loadImage(contentItem)
             contentItemIcon.setImageResource(getIcon(contentItem.type))
         }

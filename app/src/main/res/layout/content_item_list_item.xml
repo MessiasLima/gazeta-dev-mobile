@@ -37,6 +37,18 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/backgrounds/scenic" />
 
+        <com.google.android.material.chip.Chip
+            android:id="@+id/content_item_live_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/live"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:chipBackgroundColor="@color/youtube"
+            app:layout_constraintBottom_toBottomOf="@id/content_item_image"
+            app:layout_constraintStart_toStartOf="@id/content_item_guideline_start"
+            tools:visibility="visible" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/content_item_date"
             android:layout_width="0dp"
@@ -53,8 +65,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
-            android:ellipsize="end"
-            android:maxLines="2"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             app:layout_constraintBottom_toTopOf="@id/content_item_author"
             app:layout_constraintEnd_toEndOf="@id/content_item_guideline_end"
@@ -77,6 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:layout_marginTop="6dp"
             android:layout_marginBottom="@dimen/content_item_card_padding"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             app:layout_constraintBottom_toBottomOf="parent"
