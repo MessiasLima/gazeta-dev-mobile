@@ -1,5 +1,6 @@
 package com.messias.gazetadev.ui.iab
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -48,8 +49,11 @@ class IabActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView() = with(binding.iabWebView) {
-        webViewClient = WebViewClient()
+        webViewClient = WebViewClient().apply {
+            settings.javaScriptEnabled = true
+        }
 
         contentItem?.link?.also {
             loadUrl(it)
